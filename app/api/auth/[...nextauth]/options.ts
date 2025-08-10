@@ -23,15 +23,15 @@ export const authOptions : NextAuthOptions = {
                     throw new Error('Email and password are required')
                 }
                 try {
-                    const user = await User.findOne({email: credentials?.email})
+                    const user = await User.findOne({email: credentials.email})
+                    console.log('user form next auth ', user)
                     if(!user){
                         throw new Error('No user found')
                     }
-                    const isPasswordMatch = await bcrypt.compare(credentials?.password, user.password)
+                    const isPasswordMatch = await bcrypt.compare(credentials.password, user.password)
                     if(!isPasswordMatch){
                         throw new Error('Invalid credentials')
                     }
-                    console.log('user form next auth ', user)
                     return user
                 } catch (error) {
                     console.log(error)
@@ -63,7 +63,7 @@ export const authOptions : NextAuthOptions = {
         strategy: "jwt"
     },
     pages: {
-        signIn: '/auth/sign-in'
+        signIn: '/sign-in'
     },
     secret: process.env.NEXTAUTH_SECRET
 }

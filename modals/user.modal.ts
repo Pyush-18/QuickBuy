@@ -3,6 +3,7 @@ import mongoose ,{Schema, Document} from 'mongoose'
 interface UserSchema extends Document{
     username: string,
     email: string,
+    password: string,
     isVerified: boolean,
     productId: mongoose.Types.ObjectId[]
 }
@@ -13,6 +14,11 @@ const UserSchema: Schema<UserSchema> = new Schema({
         required: true
     },
     email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
         type: String,
         required: true,
         unique: true

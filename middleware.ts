@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest){
     const url = request.nextUrl
 
     
-    if(token && url.pathname === '/sign-in'){
+    if(token && (url.pathname === '/sign-in' || url.pathname === '/sign-up')){
         return NextResponse.redirect(new URL('/', request.nextUrl))
     }
 
@@ -21,7 +21,8 @@ export async function middleware(request: NextRequest){
 
 export const config = { 
     matcher: [
+        '/',
         '/sign-in',
-        '/'
+        '/sign-up'
     ]
  }

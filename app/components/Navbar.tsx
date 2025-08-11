@@ -20,7 +20,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="backdrop-blur-lg text-white shadow-lg fixed top-0 left-0 w-full h-[60px] z-50">
+    <nav className="backdrop-blur-lg  text-white shadow-lg fixed top-0 left-0 w-full h-[60px] z-50">
       <div className="container mx-auto p-4 flex items-center justify-between">
         <Link href="/" className="text-2xl font-extrabold tracking-tight text-blue-400 hover:text-blue-300 transition duration-200">
           QuickBuy

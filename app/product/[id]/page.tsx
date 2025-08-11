@@ -1,3 +1,4 @@
+import { AddToCartButton } from "@/app/components/AddToCartButton";
 import { Product } from "@/types/product";
 import axios from "axios";
 import React from "react";
@@ -19,7 +20,6 @@ async function fetchProduct(id: string): Promise<Product> {
 async function page({params}: {params: {id: string}}) {
     const {id} = await params
     const product = await fetchProduct(id)
-    console.log(product.price)
   return (
     <div className="container mx-auto px-4 py-20 bg-gray-900 min-h-screen ">
       <div className="flex flex-col md:flex-row gap-8">
@@ -39,13 +39,10 @@ async function page({params}: {params: {id: string}}) {
           <p className="text-gray-300 mb-6">
             {product.description || "No description available."}
           </p>
-          <button
-            className="w-full md:w-auto bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center justify-center gap-2"
-             // Placeholder for cart logic
-          >
-            <FaShoppingCart /> Add to Cart
-          </button>
+          <AddToCartButton product={product} />
+        <p className="text-gray-400 my-6">Added: {new Date(product.purchaseAt).toLocaleDateString()}</p>
         </div>
+
       </div>
     </div>
   );

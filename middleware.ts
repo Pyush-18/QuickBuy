@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest){
         return NextResponse.redirect(new URL('/', request.nextUrl))
     }
 
-    if(!token && url.pathname === '/'){
+    if(!token && ['/products', '/cart'].includes(url.pathname)){
         return NextResponse.redirect(new URL('/sign-in', request.nextUrl))
     }
 
@@ -23,6 +23,8 @@ export const config = {
     matcher: [
         '/',
         '/sign-in',
-        '/sign-up'
+        '/sign-up',
+        '/products',
+        '/cart'
     ]
  }

@@ -4,18 +4,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
+import { signOut, useSession } from 'next-auth/react';
+import { LuLogOut } from 'react-icons/lu';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const {status} = useSession()
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/products', label: 'Products' },
-    { href: '/sign-up', label: 'Sign Up' },
-    { href: '/sign-in', label: 'Sign In' },
     { href: '/cart', label: 'Cart' },
   ];
 
@@ -46,6 +47,9 @@ export default function Navbar() {
               )}
             </Link>
           ))}
+          {
+            status === 'authenticated' && <div className='bg-zinc-800 p-2 rounded-md hover:bg-zinc-700 duration-200 transition-colors' onClick={() => signOut()}><LuLogOut /></div>
+          }
         </div>
 
         {/* Mobile Menu Button */}

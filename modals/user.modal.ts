@@ -5,9 +5,11 @@ interface UserSchema extends Document{
     email: string,
     password: string,
     isVerified: boolean,
-    productId: mongoose.Types.ObjectId[]
+    cart: {
+        productId: mongoose.Types.ObjectId,
+        quantity: number
+    }[]
 }
-
 const UserSchema: Schema<UserSchema> = new Schema({
     username: {
         type: String,
@@ -28,10 +30,7 @@ const UserSchema: Schema<UserSchema> = new Schema({
         required: true,
         default: false
     },
-    productId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-    }]   
+    cart: [{ productId: { type: Schema.Types.ObjectId, ref: 'Product'}, quantity: { type: Number, default: 1}}] 
 }, {timestamps: true})
 
 
